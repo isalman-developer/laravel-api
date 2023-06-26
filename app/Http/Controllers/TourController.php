@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Tour\TourResource;
 use App\Models\Tour;
+use App\Models\Travel;
 use Illuminate\Http\Request;
 
 class TourController extends Controller
@@ -10,9 +12,13 @@ class TourController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Travel $travel)
     {
-        //
+        $tours = $travel->tours()
+            ->orderBy('starting_date')
+            ->paginate();
+
+        return TourResource::collection($tours);
     }
 
     /**

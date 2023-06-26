@@ -14,7 +14,7 @@ class Travel extends Model
     use HasFactory, Sluggable, HasUuids;
     protected $table = 'travels'; //by default laravel convert singular table name to plural, but for the travel the plural is travel, but for the sake of client we have to change it to travels.
 
-    protected $fillable = ['name', 'is_public', 'description', 'no_of_days', 'slug'];
+    protected $fillable = ['name', 'is_public', 'description', 'number_of_days', 'slug'];
 
     public function sluggable(): array
     {
@@ -25,11 +25,21 @@ class Travel extends Model
         ];
     }
 
-    function getNumberOfNightsAttribute() {
-        return $this->no_of_days - 1;
+    function getNumberOfNightsAttribute()
+    {
+        return $this->number_of_days - 1;
     }
 
-    function tours() : HasMany {
+    function tours(): HasMany
+    {
         return $this->hasMany(Tour::class);
     }
+
+    /*
+     specifying that where-ever in project if a route model binding is used for travel then it should be "slug" to search record
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+    */
 }
