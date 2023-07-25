@@ -11,9 +11,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Tour extends Model
 {
     use HasFactory, HasUuids;
-    protected $guarded = [
-        'travel_id',
+    protected $fillable = [
         'name',
+        'travel_id',
         'starting_date',
         'ending_date',
         'price',

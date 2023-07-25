@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::get('/users', [Controller::class, 'showUser'])->name('users.show');
+Route::post('/posts', [Controller::class, 'createPost'])->name('posts.store');
+Route::post('/comments', [Controller::class, 'createComment'])->name('comments.store');
+Route::delete('/users', [Controller::class, 'deleteUser'])->name('users.destroy');

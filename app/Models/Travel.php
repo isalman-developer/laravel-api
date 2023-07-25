@@ -16,6 +16,7 @@ class Travel extends Model
 
     protected $fillable = ['name', 'is_public', 'description', 'number_of_days', 'slug'];
 
+    // package for creating slug
     public function sluggable(): array
     {
         return [
